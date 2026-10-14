@@ -1,0 +1,233 @@
+{
+  "identitas": {
+    "judul": "[JUDUL SKRIPSI]",
+    "nama": "[NAMA MAHASISWA]",
+    "nim": "[NIM]",
+    "programStudi": "[PROGRAM STUDI]",
+    "fakultas": "[FAKULTAS]",
+    "universitas": "[NAMA UNIVERSITAS]",
+    "tahun": "[TAHUN]",
+    "pembimbing": "[NAMA DOSEN PEMBIMBING]",
+    "nidn": "[NIDN ATAU NIK PEMBIMBING]"
+  },
+  "citationStyle": "apa",
+  "chapters": [
+    {
+      "title": "Pendahuluan",
+      "sections": [
+        {
+          "title": "Latar Belakang Masalah",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "[Uraikan konteks umum, kondisi atau masalah yang ditemukan, bukti pendukung dari sumber yang dapat diverifikasi, kesenjangan penelitian, dan alasan pentingnya penelitian ini. Susun secara logis dari umum ke khusus.]"
+            }
+          ]
+        },
+        {
+          "title": "Rumusan Masalah",
+          "blocks": [
+            {
+              "type": "list",
+              "ordered": true,
+              "items": [
+                "[Tuliskan pertanyaan penelitian pertama.]",
+                "[Tuliskan pertanyaan penelitian berikutnya.]"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Batasan Masalah",
+          "blocks": [
+            {
+              "type": "list",
+              "ordered": false,
+              "items": [
+                "[Jelaskan batasan objek, ruang lingkup, variabel, data, atau periode penelitian.]",
+                "[Tambahkan batasan lain yang diperlukan.]"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Tujuan Penelitian",
+          "blocks": [
+            {
+              "type": "list",
+              "ordered": true,
+              "items": [
+                "[Tuliskan tujuan yang menjawab rumusan masalah pertama.]",
+                "[Tuliskan tujuan berikutnya.]"
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Manfaat Penelitian",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Manfaat teoritis: [Jelaskan kontribusi penelitian bagi ilmu atau penelitian selanjutnya.]\n\nManfaat praktis: [Jelaskan pihak yang dapat menggunakan hasil penelitian dan bagaimana hasil tersebut dapat dimanfaatkan.]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Tinjauan Pustaka",
+      "sections": [
+        {
+          "title": "Landasan Teori",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "[Jelaskan teori dan konsep utama yang relevan dengan topik. Definisikan istilah penting, bandingkan pandangan sumber ilmiah, dan hubungkan teori dengan variabel atau fokus penelitian. Gunakan sitasi dari sumber yang benar-benar ada.]"
+            }
+          ]
+        },
+        {
+          "title": "Penelitian Terdahulu",
+          "blocks": [
+            {
+              "type": "table",
+              "tableInputMode": "text",
+              "tableText": "Penulis dan Tahun | Fokus Penelitian | Metode | Hasil Utama | Perbedaan atau Celah\n[Nama penulis, tahun] | [Fokus] | [Metode] | [Temuan berdasarkan artikel] | [Perbedaan/celah]\n[Nama penulis, tahun] | [Fokus] | [Metode] | [Temuan berdasarkan artikel] | [Perbedaan/celah]"
+            },
+            {
+              "type": "paragraph",
+              "text": "[Sintesis persamaan dan perbedaan penelitian terdahulu. Jelaskan celah penelitian secara spesifik dan posisi penelitian ini, tanpa mengada-adakan publikasi atau temuan.]"
+            }
+          ]
+        },
+        {
+          "title": "Kerangka Pemikiran",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "[Jelaskan hubungan logis antara masalah, teori, variabel/fokus, metode, dan hasil yang diharapkan. Jika penelitian tidak menggunakan hipotesis, jangan membuat hipotesis.]"
+            },
+            {
+              "type": "image",
+              "dataUrl": "",
+              "caption": "[Unggah diagram kerangka pemikiran pada aplikasi, lalu isi keterangan gambar.]"
+            }
+          ]
+        },
+        {
+          "title": "Hipotesis Penelitian (jika diperlukan)",
+          "blocks": [
+            {
+              "type": "list",
+              "ordered": true,
+              "items": [
+                "[Tuliskan hipotesis yang dapat diuji dan sesuai dengan teori serta rancangan penelitian, atau hapus subbab ini jika tidak relevan.]"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Metodologi Penelitian",
+      "sections": [
+        {
+          "title": "Desain Penelitian",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "[Jelaskan jenis dan desain penelitian, pendekatan yang digunakan, alasan pemilihannya, serta tahapan utama penelitian.]"
+            }
+          ]
+        },
+        {
+          "title": "Objek, Subjek, dan Data Penelitian",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "[Jelaskan objek/subjek penelitian, populasi dan sampel bila relevan, sumber data, kriteria pemilihan, serta cara memperoleh data.]"
+            }
+          ]
+        },
+        {
+          "title": "Variabel atau Fokus Penelitian",
+          "blocks": [
+            {
+              "type": "table",
+              "tableInputMode": "text",
+              "tableText": "Variabel/Fokus | Definisi Operasional | Indikator | Sumber atau Instrumen\n[Nama variabel/fokus] | [Definisi yang terukur] | [Indikator] | [Sumber/instrumen]"
+            }
+          ]
+        },
+        {
+          "title": "Instrumen atau Komponen Penelitian",
+          "blocks": [
+            {
+              "type": "table",
+              "tableInputMode": "text",
+              "tableText": "Komponen/Instrumen | Fungsi | Spesifikasi atau Prosedur\n[Nama komponen/instrumen] | [Fungsi dalam penelitian] | [Spesifikasi/prosedur]"
+            }
+          ]
+        },
+        {
+          "title": "Prosedur Penelitian",
+          "blocks": [
+            {
+              "type": "list",
+              "ordered": true,
+              "items": [
+                "[Tahap persiapan dan penetapan data atau sampel.]",
+                "[Tahap pengumpulan atau pelaksanaan eksperimen.]",
+                "[Tahap pengolahan, analisis, dan pemeriksaan hasil.]"
+              ]
+            },
+            {
+              "type": "paragraph",
+              "text": "[Uraikan rincian prosedur yang perlu dijelaskan dalam bentuk narasi.]"
+            }
+          ]
+        },
+        {
+          "title": "Teknik Analisis Data",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "[Jelaskan teknik analisis untuk setiap rumusan masalah atau variabel, termasuk perangkat/metode yang digunakan dan dasar interpretasi hasil. Jangan mencantumkan hasil penelitian yang belum diperoleh.]"
+            },
+            {
+              "type": "chart",
+              "chartTitle": "[Judul grafik rencana atau hasil yang sudah tersedia]",
+              "chartType": "bar",
+              "chartInputMode": "text",
+              "chartData": "[Kategori 1] | 0\n[Kategori 2] | 0",
+              "caption": "[Ganti kategori dan angka dengan data yang benar sebelum menghasilkan dokumen.]"
+            }
+          ]
+        },
+        {
+          "title": "Etika Penelitian (jika relevan)",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "[Jelaskan persetujuan partisipan, perlindungan identitas, izin penggunaan data, dan langkah etis lain yang relevan. Hapus subbab ini jika tidak diperlukan.]"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "referensi": [],
+  "sources": [
+    {
+      "id": "sumber-1",
+      "title": "[Judul artikel atau buku]",
+      "authors": "[Nama Penulis 1; Nama Penulis 2]",
+      "year": "[TAHUN]",
+      "journal": "[Nama jurnal atau penerbit]",
+      "volume": "[VOLUME]",
+      "issue": "[NOMOR]",
+      "pages": "[HALAMAN]",
+      "doi": "[DOI, jika tersedia]"
+    }
+  ]
+}

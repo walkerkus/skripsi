@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="id">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ThesisFlow — Skripsi Builder</title>
+  <meta name="description" content="Form skripsi lokal dengan autosave localStorage dan generator DOCX Python.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+  <div class="ambient ambient-a"></div>
+  <div class="ambient ambient-b"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#">
+      <div class="brand-mark">TF</div>
+      <div>
+        <strong>ThesisFlow</strong>
+        <span>skripsi workspace</span>
+      </div>
+    </a>
+
+    <div class="top-actions">
+      <span class="save-state" id="saveState"><span class="dot"></span>Tersimpan lokal</span>
+      <button class="btn btn-ghost" id="themeToggle" type="button">☾</button>
+      <button class="btn btn-primary" id="generateBtn" type="button">Preview DOCX</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <p class="eyebrow">PROGRESS</p>
+        <div class="progress-row">
+          <strong id="progressText">0%</strong>
+          <span>terisi</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+      </div>
+
+      <nav class="nav" id="sectionNav">
+        <button class="nav-item active" data-target="identitas"><span>01</span>Identitas</button>
+        <button class="nav-item" data-target="bab"><span>02</span>Bab & Subbab</button>
+        <div class="chapter-nav-section">
+          <div class="chapter-nav-heading"><span>STRUKTUR BAB</span><span id="chapterCount"></span></div>
+          <div class="chapter-nav-tools">
+            <label class="sr-only" for="chapterSearch">Cari bab atau subbab</label>
+            <input id="chapterSearch" type="search" placeholder="Cari bab / subbab">
+          </div>
+          <div class="chapter-nav" id="chapterNav" aria-label="Daftar bab dan subbab"></div>
+        </div>
+        <button class="nav-item" data-target="pustaka"><span>03</span>Referensi</button>
+        <button class="nav-item" data-target="tools"><span>04</span>Data & Backup</button>
+      </nav>
+
+      <div class="sidebar-tip">
+        <span>✦</span>
+        <p>Semua perubahan disimpan otomatis di browser kamu. Tidak perlu klik Save.</p>
+      </div>
+    </aside>
+
+    <section class="content">
+      <div class="hero">
+        <div>
+          <span class="pill">Local-first • No cloud required</span>
+          <h1>Isi skripsimu tanpa<br><em>berantem sama Word.</em></h1>
+          <p>Fokus ke isi. Struktur, heading, margin, cover, dan nomor halaman akan ditangani Python saat dokumen
+            dibuat.</p>
+        </div>
+        <div class="hero-orb">
+          <span id="heroPercent">0%</span>
+          <small>ready</small>
+        </div>
+      </div>
+
+      <!-- IDENTITAS -->
+      <section class="form-section" id="identitas">
+        <div class="section-heading">
+          <div>
+            <span class="section-number">01</span>
+            <h2>Identitas Skripsi</h2>
+          </div>
+          <p>Data untuk cover dan metadata dokumen.</p>
+        </div>
+
+        <div class="card">
+          <div class="field span-2">
+            <label for="judul">Judul Skripsi</label>
+            <textarea id="judul" data-key="identitas.judul" rows="4"></textarea>
+            <div class="field-meta"><span>Gunakan judul final atau sementara</span><span class="counter"
+                data-for="judul"></span></div>
+          </div>
+
+          <div class="field">
+            <label for="nama">Nama</label>
+            <input id="nama" data-key="identitas.nama" type="text">
+          </div>
+
+          <div class="field">
+            <label for="nim">NIM</label>
+            <input id="nim" data-key="identitas.nim" type="text">
+          </div>
+
+          <div class="field">
+            <label for="programStudi">Program Studi</label>
+            <input id="programStudi" data-key="identitas.programStudi" type="text">
+          </div>
+
+          <div class="field">
+            <label for="fakultas">Fakultas</label>
+            <input id="fakultas" data-key="identitas.fakultas" type="text">
+          </div>
+
+          <div class="field">
+            <label for="universitas">Universitas</label>
+            <input id="universitas" data-key="identitas.universitas" type="text">
+          </div>
+
+          <div class="field">
+            <label for="tahun">Tahun</label>
+            <input id="tahun" data-key="identitas.tahun" type="number">
+          </div>
+
+          <div class="field">
+            <label for="pembimbing">Dosen Pembimbing</label>
+            <input id="pembimbing" data-key="identitas.pembimbing" type="text" placeholder="Opsional">
+          </div>
+
+          <div class="field">
+            <label for="nidn">NIDN / NIK Pembimbing</label>
+            <input id="nidn" data-key="identitas.nidn" type="text" placeholder="Opsional">
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section" id="bab">
+        <div class="section-heading">
+          <div>
+            <span class="section-number">02</span>
+            <h2>Bab & Subbab</h2>
+          </div>
+          <p>Susun struktur dokumen dan tambahkan paragraf, daftar, gambar, atau tabel sesuai kebutuhan.</p>
+        </div>
+        <div id="chaptersEditor" class="chapters-editor"></div>
+        <button class="btn btn-primary add-chapter-btn" id="addChapter" type="button">+ Tambah Bab</button>
+      </section>
+
+      <!-- REFERENCES -->
+      <section class="form-section" id="pustaka">
+        <div class="section-heading">
+          <div>
+            <span class="section-number">03</span>
+            <h2>Pustaka & Sitasi</h2>
+          </div>
+          <p>Impor PDF jurnal untuk mengisi metadata otomatis dan langsung menambahkannya ke daftar pustaka.</p>
+        </div>
+
+        <div class="card stack citation-library">
+          <div class="citation-controls">
+            <label class="citation-upload" for="referenceUpload">
+              <span class="tool-icon">⇧</span>
+              <span><strong>Import Jurnal</strong><small>PDF • Maksimal 20 MB</small></span>
+              <input id="referenceUpload" type="file" accept=".pdf,application/pdf" hidden>
+            </label>
+            <label class="citation-style-label" for="citationStyle">
+              Gaya sitasi
+              <select id="citationStyle">
+                <option value="apa">APA edisi ke-7 (author-date)</option>
+                <option value="ieee">IEEE (nomor)</option>
+              </select>
+            </label>
+          </div>
+          <p class="editor-hint">Metadata dicocokkan otomatis melalui DOI/judul jika tersedia. PDF tidak disimpan; jika jurnal tidak ditemukan online, metadata PDF diisi semampunya.</p>
+          <p class="citation-status" id="citationStatus" role="status"></p>
+          <div class="source-list" id="sourceList"></div>
+        </div>
+
+        <div class="card stack">
+          <div class="label-row">
+            <label>Referensi manual</label>
+            <button class="mini-btn" type="button" data-add-list="referensi">+ Tambah</button>
+          </div>
+          <div class="dynamic-list references" data-list="referensi"></div>
+        </div>
+      </section>
+
+      <!-- TOOLS -->
+      <section class="form-section" id="tools">
+        <div class="section-heading">
+          <div>
+            <span class="section-number">04</span>
+            <h2>Data & Backup</h2>
+          </div>
+          <p>Semua data tetap berada di browser sampai kamu mengirimnya ke Python untuk membuat dokumen.</p>
+        </div>
+
+        <div class="tools-grid">
+          <button class="tool-card" id="exportBtn" type="button">
+            <span class="tool-icon">⇩</span>
+            <div><strong>Export JSON</strong><small>Backup semua data localStorage</small></div>
+          </button>
+
+          <label class="tool-card" for="importInput">
+            <span class="tool-icon">⇧</span>
+            <div><strong>Import JSON</strong><small>Kembalikan data dari backup</small></div>
+          </label>
+          <input id="importInput" type="file" accept=".json,application/json" hidden>
+
+          <button class="tool-card danger" id="resetBtn" type="button">
+            <span class="tool-icon">↺</span>
+            <div><strong>Reset Data</strong><small>Kembali ke data contoh awal</small></div>
+          </button>
+
+          <button class="tool-card danger" id="clearDataBtn" type="button">
+            <span class="tool-icon">×</span>
+            <div><strong>Kosongkan Semua Data</strong><small>Hapus seluruh isi skripsi dari browser</small></div>
+          </button>
+
+          <button class="tool-card accent" id="generateBtnBottom" type="button">
+            <span class="tool-icon">W</span>
+            <div><strong>Preview Word</strong><small>Periksa isi sebelum membuat file</small></div>
+          </button>
+        </div>
+
+        <div class="status-box" id="statusBox">
+          <span class="status-icon">●</span>
+          <div>
+            <strong>Python generator belum dicek</strong>
+            <p>Jalankan <code>python app.py</code>, lalu buka halaman ini dari <code>http://127.0.0.1:5000</code>.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>ThesisFlow • local-first thesis workspace</span>
+        <span>Data form tersimpan di browser kamu</span>
+      </footer>
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <div class="modal-backdrop preview-backdrop" id="previewBackdrop" aria-hidden="true">
+    <section class="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="previewTitle">
+      <header class="preview-header">
+        <div><span class="eyebrow">PRATINJAU DOKUMEN</span>
+          <h2 id="previewTitle">Proposal Skripsi</h2>
+        </div>
+        <button class="icon-btn" id="closePreviewIcon" type="button" title="Tutup pratinjau">×</button>
+      </header>
+      <div id="docPreview" class="document-preview"></div>
+      <footer class="preview-actions">
+        <button class="btn btn-ghost" id="closePreview" type="button">Kembali mengedit</button>
+        <button class="btn btn-primary" id="previewGenerateBtn" type="button">Generate & Download DOCX</button>
+      </footer>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal">
+      <div class="modal-icon">!</div>
+      <h3>Reset semua data?</h3>
+      <p>Data yang kamu isi akan diganti kembali dengan data contoh awal.</p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="cancelReset" type="button">Batal</button>
+        <button class="btn btn-danger" id="confirmReset" type="button">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="clearDataBackdrop">
+    <div class="modal">
+      <div class="modal-icon">!</div>
+      <h3>Kosongkan semua data?</h3>
+      <p>Semua identitas, bab, referensi, dan sumber akan dihapus dari penyimpanan browser. Tindakan ini tidak dapat dibatalkan.</p>
+      <div class="modal-actions">
+        <button class="btn btn-ghost" id="cancelClearData" type="button">Batal</button>
+        <button class="btn btn-danger" id="confirmClearData" type="button">Hapus Semua</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+
+</html>
